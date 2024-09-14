@@ -1,11 +1,4 @@
 #not pushing on github because of file size > 100mb
 rforest_model.pkl
-cat_encoder.pkl
-color_encoder.pkl
-man_encoder.pkl
-dw_encoder.pkl
-fuel_encoder.pkl
-gbt_encoder.pkl
 scaler.pkl
 EDA.ipynb
-
