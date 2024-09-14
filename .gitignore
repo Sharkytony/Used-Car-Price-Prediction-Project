@@ -1,4 +1,3 @@
 #not pushing on github because of file size > 100mb
 rforest_model.pkl
-scaler.pkl
 EDA.ipynb
