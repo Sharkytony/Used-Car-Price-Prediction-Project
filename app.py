@@ -3,28 +3,28 @@ import numpy as np
 import pipeline
 import pickle
 
-with open('color_encoder.pkl', 'rb')as file:
+with open('feature_encoders/color_encoder.pkl', 'rb')as file:
     color_encoder = pickle.load(file)
 
-with open('dw_encoder.pkl', 'rb')as file:
+with open('feature_encoders/dw_encoder.pkl', 'rb')as file:
     dw_encoder = pickle.load(file)
 
-with open('gbt_encoder.pkl', 'rb')as file:
+with open('feature_encoders/gbt_encoder.pkl', 'rb')as file:
     gbt_encoder = pickle.load(file) 
 
-with open('fuel_encoder.pkl', 'rb')as file:
+with open('feature_encoders/fuel_encoder.pkl', 'rb')as file:
     fuel_encoder = pickle.load(file)
 
-with open('cat_encoder.pkl', 'rb')as file:
+with open('feature_encoders/cat_encoder.pkl', 'rb')as file:
     cat_encoder = pickle.load(file)
     
-with open('man_encoder.pkl', 'rb')as file:
+with open('feature_encoders/man_encoder.pkl', 'rb')as file:
     man_encoder = pickle.load(file)
 
-with open('scaler.pkl', 'rb')as file :
+with open('scaler/scaler.pkl', 'rb')as file :
     scaler = pickle.load(file)
 
-with open('rforest_model.pkl', 'rb') as file:
+with open('model/rforest_model.pkl', 'rb') as file:
     loaded_model = pickle.load(file)
 
 app = Flask(__name__)
