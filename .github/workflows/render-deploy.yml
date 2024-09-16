@@ -1,0 +1,38 @@
+name: Render Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Create Deployment
+        id: create_deployment
+        run: |
+          response=$(curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"ref": "${{ github.ref }}", "environment": "production", "description": "Deployed to Render"}' \
+            https://api.github.com/repos/Sharkytony/Used-Car-Price-Prediction-Project/deployments)
+          echo "::set-output name=deployment_id::$(echo $response | jq -r .id)"
+
+      - name: Update Deployment Status
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"state": "success", "description": "Deployed to Render"}' \
+            https://api.github.com/repos/Sharkytony/Used-Car-Price-Prediction-Project/deployments/${{ steps.create_deployment.outputs.deployment_id }}/statuses
+
+      - name: Trigger Render Deployment
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          curl -X POST https://api.render.com/v1/services/srv-crk1tt3tq21c73a8r830/deploys \
+            -H "Authorization: Bearer $RENDER_API_KEY"
