@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for("static", filename="sell_save.png") }}');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-color: #555555;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            max-width: 800px;
+            margin: 175px auto 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: x-large;
+        }
+        select{
+            width: 400px;
+            padding: 10px;
+            /* border: 3px solid #ccc; */
+            border-radius: 3px;
+            font-size: 18px;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            border: 3px solid #ccc;
+            border-radius: 3px;
+            font-size: 18px;
+        }
+        .btn {
+            background-color: #007BFF;
+            color: #fff;
+            width: 200px; 
+            height: 60px; 
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            margin-top: 50px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form name="input-list" action="/preds" method="post">
+            <form name="input-list" action="/preds" method="post">
+                <div class="input-group">
+                    <label for="ID">ID (Optional)</label><br>
+                    <input type="text" id="ID" name="ID" placeholder="For companies if they are going to save the data ">
+                </div>
+                <div class="input-group">
+                    <label for="Levy">Levy</label><br>
+                    <input type="text" id="Levy" name="Levy" required placeholder="Any additional fees or taxes associated with the vehicle.">
+                </div>
+                <div class="input-group">
+                    <label for="Manufacturer">Manufacturer</label><br>
+                    <input type="text" id="Manufacturer" name="Manufacturer" required placeholder="Manufacturing brand of the vehicle">
+                </div>
+                <div class="input-group">
+                    <label for="Model">Model (Optional)</label><br>
+                    <input type="text" id="Model" name="Model" placeholder="Model name of the vehicle">
+                </div>
+                <div class="input-group">
+                    <label for="Prod. year">Production year</label><br>
+                    <input type="text" id="Prod. year" name="Prod. year" required placeholder="Year of manufacturing">
+                </div>
+                <div class="input-group">
+                    <label for="Category">Category</label><br>
+                    <select id="Category" name="Category" required style="width: 93%;  font-size: 18px;">
+                        <option value="Jeep">Jeep</option>
+                        <option value="Hatchback">Hatchback</option>
+                        <option value="Sedan">Sedan</option>
+                        <option value="Microbus">Microbus</option>
+                        <option value="Microbus">Goods wagon</option>
+                        <option value="Hatchback">Coupe</option>
+                        <option value="Hatchback">Minivan</option>
+                        <option value="Hatchback">Cabriolet</option>
+                        <option value="Hatchback">Limousine</option>
+                        <option value="Hatchback">Pickup</option>
+                        <option value="Hatchback">Other</option>
+                    </select>
+
+                </div>    
+                <div class="input-group">
+                    <label for="Leather interior">Leather interior</label><br>
+                    <select id="Leather interior" name="Leather interior" required style="width: 93%;  font-size: 18px;">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Fuel type">Fuel type</label><br>
+                    <select id="Fuel type" name="Fuel type" required style="width: 93%;  font-size: 18px;">
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Hydrogen">Hydrogen</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Plug-in Hybrid">Plug-in Hybrid</option>
+                        <option value="LPG">LPG</option>
+                        <option value="CNG">CNG</option>
+                    </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Engine volume">Engine volume</label><br>
+                    <input type="text" id="Engine volume" name="Engine volume" required>
+                </div>                    
+                <div class="input-group">
+                    <label for="Turbo">Turbo</label><br>
+                    <select id="Turbo" name="Turbo" required style="width: 93%;  font-size: 18px;">
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>    
+
+                <div class="input-group">
+                    <label for="Mileage">Kilometers driven</label><br>
+                    <input type="text" id="Mileage" name="Mileage" required >
+                </div>    
+                <div class="input-group">
+                    <label for="Cylinders">Cylinders</label><br>
+                    <select id="Cylinders" name="Cylinders" required style="width: 93%;  font-size: 18px;">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                    </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Gear box type">Gear box type</label><br>
+                    <select id="Gear box type" name="Gear box type" required style="width: 93%;  font-size: 18px;">
+                        <option value="Automatic">Automatic</option>
+                        <option value="Manual">Manual</option>
+                        <option value="Variator">Variator</option>
+                        <option value="Tiptronic">Tiptronic</option>
+                    </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Drive wheels">Drive wheels</label><br>
+                    <select id="Drive wheels" name="Drive wheels" required style="width: 93%;  font-size: 18px;">
+                        <option value="Front">Front</option>
+                        <option value="Rear">Rear</option>
+                        <option value="4x4">4x4</option>
+                    </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Doors">Doors (Optional)</label><br>
+                    <select id="Doors" name="Doors" required style="width: 93%;  font-size: 18px;">
+                        <option value="2">2</option>
+                        <option value="4">4</option>
+                        <option value="5+">5+</option>
+                    </select>
+                    </div>    
+                <div class="input-group">
+                    <label for="Wheel">Wheel</label><br>
+                    <select id="Wheel" name="Wheel" required style="width: 93%;  font-size: 18px;">
+                    <option value="right">Right hand drive</option>
+                    <option value="left">Left hand drive</option>
+                </select>
+                </div>    
+                <div class="input-group">
+                    <label for="Color">Colour</label><br>
+                    <select id="Color" name="Color" required style="width: 93%;  font-size: 18px;">
+                        <option value="Black">Black</option>
+                        <option value="White">White</option>
+                        <option value="Silver">Silver</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Blue">Blue</option>
+                        <option value="Red">Red</option>
+                        <option value="Green">Green</option>
+                        <option value="Brown">Brown</option>
+                        <option value="Other">Other</option>
+                        </select>
+                    </div>    
+                    <div class="input-group">
+                        <label for="Airbags">Airbags</label><br>
+                        <select id="Airbags" name="Airbags" required style="width: 93%;  font-size: 18px;">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            </select>
+                        </div>        
+                <div class="input-group">
+                    <center>
+                    <button class="btn" type="submit">Predict</button>
+                    </center>
+                </div>
+            </form>
+        </div>
+        <footer class="footer">
+            <h2>Connect with Developer </h2><br>
+            <a href="https://www.linkedin.com/in/anthonyrodrigues443/" target="_blank"><img src='{{ url_for("static", filename="linkedin logo.png") }}' width="75px"></a>
+        </footer>
+    </body>
+    </html>
+    

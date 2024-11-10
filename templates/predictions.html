@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction Result</title>
+    <style>
+        .container {
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            max-width: 800px;
+            margin: 175px auto 50px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #6f0000;
+        }
+    </style>
+    <title>Car Price Prediction</title>
+</head>
+<body bgcolor="lightgrey">
+
+    <div class="container">
+        {% if predicted_price %}
+            <h1>Best Price for your car : <u>${{ predicted_price }}</u></h1>
+        {% else %}
+            <p>No prediction available. Please submit the form to get a prediction.</p>
+        {% endif %}
+
+        <a href="/" class="button">Home</a>
+    </div>
+</body>
+</html>
